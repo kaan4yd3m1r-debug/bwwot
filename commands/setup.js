@@ -137,7 +137,7 @@ module.exports = {
       // Create panel embed
       const embed = new EmbedBuilder()
         .setColor('#00ccff')
-        .setTitle('🚀 Chivas Proxy Hizmetleri')
+        .setTitle('#🚀 1953 Proxy Hizmetleri')
         .setDescription('Aşağıdaki butonlardan istediğiniz proxy türünü seçin!')
         .addFields(
   {

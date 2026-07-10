@@ -6,7 +6,7 @@ const cooldowns = new Map();
 module.exports = {
   name: 'interactionCreate',
 
-  async execute(interaction, client) {
+  async execute(interaction) {
     try {
       if (!interaction.isButton()) return;
 
@@ -19,7 +19,7 @@ module.exports = {
         const remaining = Math.ceil((cooldowns.get(cooldownKey) - now) / 1000);
 
         return interaction.reply({
-          content: `Bu butonu kullanmak için ${remaining} saniye beklemelisin!`,
+          content: `Bu butonu tekrar kullanmak için **${remaining} saniye** beklemelisin.`,
           ephemeral: true
         });
       }
@@ -30,56 +30,62 @@ module.exports = {
 
       const proxies = await setupCommand.fetchProxies(protocol);
 
-      const timeTaken = Math.ceil((Date.now() - startTime) / 1000);
+      const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
 
       cooldowns.set(cooldownKey, now + cooldownTime);
 
-      setTimeout(() => {
-        cooldowns.delete(cooldownKey);
-      }, cooldownTime);
+      setTimeout(() => cooldowns.delete(cooldownKey), cooldownTime);
 
       let proxyList = '';
 
       for (const p of proxies) {
         const info = setupCommand.getPingInfo(p.ping);
 
-        proxyList += `🌍 **${p.proxy}** → ${info.emoji} ${info.text}\n`;
+        proxyList += `🌍 **${String(p.proxy).trim()}** ${info.emoji} **${info.text}**\n`;
       }
 
       if (!proxyList) {
-        proxyList = '❌ Proxy bulunamadı!';
+        proxyList = '❌ Proxy bulunamadı.';
       }
 
       const embed = new EmbedBuilder()
-        .setColor('#00ccff')
+        .setColor('#0099ff')
         .setTitle(`📋 ${protocol.toUpperCase()} Proxyleri`)
-        .setDescription(
-          `**Toplam:** ${proxies.length}/${setupCommand.maxProxies}\n\n${proxyList}`
+        .addFields(
+          {
+            name: `📦 Toplam Proxy`,
+            value: `**${proxies.length}/${setupCommand.maxProxies}**`,
+            inline: false
+          },
+          {
+            name: '🌍 Proxy Listesi',
+            value: proxyList,
+            inline: false
+          }
         )
         .setFooter({
-          text: `${timeTaken} Saniyede Bulundu`
+          text: `${timeTaken} saniyede bulundu`
         })
         .setTimestamp();
 
       const reply = await interaction.editReply({
-        embeds: [embed],
-        ephemeral: true
+        embeds: [embed]
       });
 
       setTimeout(() => {
-        reply.delete().catch(() => {});
+        interaction.deleteReply().catch(() => {});
       }, cooldownTime);
 
     } catch (error) {
-      console.error('Interaction error:', error);
+      console.error(error);
 
-      if (interaction.replied || interaction.deferred) {
+      if (interaction.deferred || interaction.replied) {
         await interaction.editReply({
-          content: 'Bir hata oluştu!'
+          content: '❌ Bir hata oluştu.'
         }).catch(() => {});
       } else {
         await interaction.reply({
-          content: 'Bir hata oluştu!',
+          content: '❌ Bir hata oluştu.',
           ephemeral: true
         }).catch(() => {});
       }

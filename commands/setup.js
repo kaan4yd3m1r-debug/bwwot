@@ -137,27 +137,27 @@ module.exports = {
       // Create panel embed
       const embed = new EmbedBuilder()
         .setColor('#00ccff')
-        .setTitle('#🚀 1953 Proxy Hizmetleri')
+        .setTitle(' # 🚀 1953 Proxy Hizmetleri')
         .setDescription('Aşağıdaki butonlardan istediğiniz proxy türünü seçin!')
         .addFields(
   {
     name: '🌐 HTTP PROXY',
-    value: `### ${proxyStore.http.length}/${maxProxies} Proxy`,
+    value: ` ${proxyStore.http.length}/${maxProxies} Proxy`,
     inline: false
   },
   {
     name: '🔒 HTTPS PROXY',
-    value: `### ${proxyStore.https.length}/${maxProxies} Proxy`,
+    value: ` ${proxyStore.https.length}/${maxProxies} Proxy`,
     inline: false
   },
   {
     name: '🧦 SOCKS4 PROXY',
-    value: `### ${proxyStore.socks4.length}/${maxProxies} Proxy`,
+    value: ` ${proxyStore.socks4.length}/${maxProxies} Proxy`,
     inline: false
   },
   {
     name: '🧦 SOCKS5 PROXY',
-    value: `### ${proxyStore.socks5.length}/${maxProxies} Proxy`,
+    value: ` ${proxyStore.socks5.length}/${maxProxies} Proxy`,
     inline: false
   }
 )

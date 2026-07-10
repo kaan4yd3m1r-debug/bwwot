@@ -137,30 +137,39 @@ module.exports = {
       // Create panel embed
       const embed = new EmbedBuilder()
         .setColor('#00ccff')
-        .setTitle(' # 🚀 1953 Proxy Hizmetleri')
+        .setTitle('🚀 1953 Proxy Hizmetleri')
         .setDescription('Aşağıdaki butonlardan istediğiniz proxy türünü seçin!')
         .addFields(
-  {
-    name: '🌐 HTTP PROXY',
-    value: ` ${proxyStore.http.length}/${maxProxies} Proxy`,
+{
+    name: "🌐 HTTP PROXY",
+    value:
+`# ${proxyStore.http.length}/${maxProxies}
+
+━━━━━━━━━━━━━━━━━━━━`,
     inline: false
-  },
-  {
-    name: '🔒 HTTPS PROXY',
-    value: ` ${proxyStore.https.length}/${maxProxies} Proxy`,
+},
+{
+    name: "🔒 HTTPS PROXY",
+    value:
+`# ${proxyStore.https.length}/${maxProxies}
+
+━━━━━━━━━━━━━━━━━━━━`,
     inline: false
-  },
-  {
-    name: '🧦 SOCKS4 PROXY',
-    value: ` ${proxyStore.socks4.length}/${maxProxies} Proxy`,
+},
+{
+    name: "🧦 SOCKS4 PROXY",
+    value:
+`# ${proxyStore.socks4.length}/${maxProxies}
+
+━━━━━━━━━━━━━━━━━━━━`,
     inline: false
-  },
-  {
-    name: '🧦 SOCKS5 PROXY',
-    value: ` ${proxyStore.socks5.length}/${maxProxies} Proxy`,
+},
+{
+    name: "🧦 SOCKS5 PROXY",
+    value:
+`# ${proxyStore.socks5.length}/${maxProxies}`,
     inline: false
-  }
-)
+})
         .setTimestamp();
       
       const row = new ActionRowBuilder()

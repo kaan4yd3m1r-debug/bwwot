@@ -132,9 +132,12 @@ module.exports = {
         .setTitle('🚀 Chivas Proxy Hizmetleri')
         .setDescription('Aşağıdaki butonlardan istediğiniz proxy türünü seçin!')
         .addFields(
-          { name: '🌐 HTTP', value: `**${proxyStore.http.length}/${maxProxies}**`, inline: true },
-          { name: '🔒 HTTPS', value: `**${proxyStore.https.length}/${maxProxies}**`, inline: true },
-          { name: '🧦 SOCKS4', value: `**${proxyStore.socks4.length}/${maxProxies}**`, inline: true },
+          { name: '🌐 HTTP', value: `**${proxyStore.http.length}/${maxProxies}**`, inline: true
+          },
+          { name: '🔒 HTTPS', value: `**${proxyStore.https.length}/${maxProxies}**`, inline: true
+          },
+          { name: '🧦 SOCKS4', value: `**${proxyStore.socks4.length}/${maxProxies}**`, inline: true
+          },
           { name: '🧦 SOCKS5', value: `**${proxyStore.socks5.length}/${maxProxies}**`, inline: true }
         )
         .setTimestamp();

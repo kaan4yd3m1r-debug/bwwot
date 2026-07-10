@@ -172,32 +172,41 @@ module.exports = {
 })
         .setTimestamp();
       
-      const row = new ActionRowBuilder()
-        .addComponents(
-          new ButtonBuilder()
-            .setCustomId('proxy_http')
-            .setLabel('HTTP Proxyleri')
-            .setEmoji('🌐')
-            .setStyle(ButtonStyle.Primary),
-          new ButtonBuilder()
-            .setCustomId('proxy_https')
-            .setLabel('HTTPS Proxyleri')
-            .setEmoji('🔒')
-            .setStyle(ButtonStyle.Primary),
-          new ButtonBuilder()
-            .setCustomId('proxy_socks4')
-            .setLabel('SOCKS4 Proxyleri')
-            .setEmoji('🧦')
-            .setStyle(ButtonStyle.Primary),
-          new ButtonBuilder()
-            .setCustomId('proxy_socks5')
-            .setLabel('SOCKS5 Proxyleri')
-            .setEmoji('🧦')
-            .setStyle(ButtonStyle.Primary)
-        );
+const row1 = new ActionRowBuilder()
+  .addComponents(
+    new ButtonBuilder()
+      .setCustomId('proxy_http')
+      .setLabel('HTTP Proxyleri')
+      .setEmoji('🌐')
+      .setStyle(ButtonStyle.Primary),
+
+    new ButtonBuilder()
+      .setCustomId('proxy_https')
+      .setLabel('HTTPS Proxyleri')
+      .setEmoji('🔒')
+      .setStyle(ButtonStyle.Primary)
+  );
+
+const row2 = new ActionRowBuilder()
+  .addComponents(
+    new ButtonBuilder()
+      .setCustomId('proxy_socks4')
+      .setLabel('SOCKS4 Proxyleri')
+      .setEmoji('🧦')
+      .setStyle(ButtonStyle.Primary),
+
+    new ButtonBuilder()
+      .setCustomId('proxy_socks5')
+      .setLabel('SOCKS5 Proxyleri')
+      .setEmoji('🧦')
+      .setStyle(ButtonStyle.Primary)
+  );
       
       // Send the panel immediately
-      await message.channel.send({ embeds: [embed], components: [row] });
+      await message.channel.send({
+  embeds: [embed],
+  components: [row1, row2]
+});
     } catch (error) {
       console.error('Setup error:', error);
       try {

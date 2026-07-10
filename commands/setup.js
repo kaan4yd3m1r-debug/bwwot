@@ -23,7 +23,11 @@ async function fetchProxiesBasic(protocol) {
     };
     
     const response = await axios.get(apiUrls[protocol], { timeout: 10000 });
-    const proxies = response.data.split('\n').filter(p => p.trim()).slice(0, maxProxies);
+    const proxies = response.data
+  .split(/\r?\n/)
+  .map(p => p.trim())
+  .filter(Boolean)
+  .slice(0, maxProxies);
     
     // Store just the proxy strings for setup speed
     proxyStore[protocol] = proxies.map(p => ({ proxy: p, ping: null }));
@@ -45,7 +49,11 @@ async function fetchProxies(protocol) {
     };
     
     const response = await axios.get(apiUrls[protocol], { timeout: 10000 });
-    const proxies = response.data.split('\n').filter(p => p.trim()).slice(0, maxProxies);
+    const proxies = response.data
+  .split(/\r?\n/)
+  .map(p => p.trim())
+  .filter(Boolean)
+  .slice(0, maxProxies);
     
     // Check ping for each proxy
     const checkedProxies = [];

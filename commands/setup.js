@@ -132,14 +132,27 @@ module.exports = {
         .setTitle('🚀 Chivas Proxy Hizmetleri')
         .setDescription('Aşağıdaki butonlardan istediğiniz proxy türünü seçin!')
         .addFields(
-          { name: '🌐 HTTP', value: `**${proxyStore.http.length}/${maxProxies}**`, inline: true
-          },
-          { name: '🔒 HTTPS', value: `**${proxyStore.https.length}/${maxProxies}**`, inline: true
-          },
-          { name: '🧦 SOCKS4', value: `**${proxyStore.socks4.length}/${maxProxies}**`, inline: true
-          },
-          { name: '🧦 SOCKS5', value: `**${proxyStore.socks5.length}/${maxProxies}**`, inline: true }
-        )
+  {
+    name: '🌐 HTTP PROXY',
+    value: `### ${proxyStore.http.length}/${maxProxies} Proxy`,
+    inline: false
+  },
+  {
+    name: '🔒 HTTPS PROXY',
+    value: `### ${proxyStore.https.length}/${maxProxies} Proxy`,
+    inline: false
+  },
+  {
+    name: '🧦 SOCKS4 PROXY',
+    value: `### ${proxyStore.socks4.length}/${maxProxies} Proxy`,
+    inline: false
+  },
+  {
+    name: '🧦 SOCKS5 PROXY',
+    value: `### ${proxyStore.socks5.length}/${maxProxies} Proxy`,
+    inline: false
+  }
+)
         .setTimestamp();
       
       const row = new ActionRowBuilder()
